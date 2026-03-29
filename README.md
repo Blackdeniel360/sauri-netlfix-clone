@@ -1,2 +1,0 @@
-# Redeniel B. Sauri
-
