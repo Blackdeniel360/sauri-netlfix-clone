@@ -12,19 +12,30 @@
 }
 
 .nav__black {
-  background-color: #111;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
+
 
 .nav__logo {
-  position: fixed;
-  left: 20px;
-  width: 80px;
-  object-fit: contain;
+  font-family: 'Bebas Neue', cursive;  
+  color: #E50914;                     
+  font-weight: 700;                    
+  font-size: 40px;                     
+  letter-spacing: -1px;                
+  cursor: pointer;
+  margin: 0;
+  text-transform: uppercase;           
 }
 
-.nav__avatar {
-  position: fixed;
-  right: 20px;
-  width: 30px;
+.nav__logo:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+
+.nav__logo-img {
+  width: 50px;
+  height: 50px;
   object-fit: contain;
+  cursor: pointer;  
 }

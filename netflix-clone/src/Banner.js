@@ -6,13 +6,24 @@ import './Banner.css';
 function Banner() {
   const [movie, setMovie] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
-      setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
-    }
-    fetchData();
-  }, []);
+ // Auto-change banner movie every 3 seconds
+useEffect(() => {
+  const interval = setInterval(async () => {
+    // fetch all Netflix Originals
+    const request = await axios.get(requests.fetchNetflixOriginals);
+    // pick a random movie correctly
+    const randomMovie =
+      request.data.results[
+        Math.floor(Math.random() * request.data.results.length)
+      ];
+    setMovie(randomMovie);
+  }, 2000); // 5 seconds
+
+  // cleanup interval on unmount
+  return () => clearInterval(interval);
+}, []);
+
+
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
