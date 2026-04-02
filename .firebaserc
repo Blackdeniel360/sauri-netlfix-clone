@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "netlfix-clone-sauri"
+  },
+  "targets": {
+    "netlfix-clone-sauri": {
+      "hosting": {
+        "main": [
+          "dist"
+        ]
+      }
+    }
   }
 }
