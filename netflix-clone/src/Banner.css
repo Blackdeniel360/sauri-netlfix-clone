@@ -25,6 +25,49 @@
   height: 80px;
 }
 
+/* Mobile layout */
+@media (max-width: 600px) {
+  .banner {
+    height: 60vh; /* screen ratio for the banner mobile */
+    background-position: center top !important;
+  }
+  .banner__contents {
+    padding-top: 100px;
+    margin-left: 15px;
+    height: auto;
+  }
+  .banner__title {
+    font-size: 1.8rem;
+    font-weight: 700;    
+  }
+  .banner__description {
+    width: 100%;
+    font-size: 0.75rem;
+    max-width: 280px;
+  }
+  .banner__button {
+    padding: 0.4rem 1.2 rem !important;
+    font-size: 0.7rem;
+  } 
+  .banner__fadeBottom {
+    height:0.5rem;
+  }
+    
+  }
+
+  /*  Tablet Layout */
+@media (max-width: 992px) {
+  .banner {
+    height: 400px;
+  }
+  .banner__title {
+    font-size: 3rem; 
+  }
+  .banner__fadeBottom {
+    height:2;
+  }
+}
+
 .banner__button {
   cursor: pointer;
   color: #fff;
@@ -46,12 +89,13 @@
   transition: all 0.2s;
 }
 
-.banner--fadeBottom {
-  height: 5rem;
-  background-image: linear-gradient(
-    180deg,
-    transparent,
-    rgba(37, 37, 37, 0.61),
-    #111
-  );
+.banner__fadeBottom {
+  height: 6rem;
+background-image: linear-gradient(
+  180deg,
+  transparent,
+  rgba(37, 37, 37, 0.61),
+  #111
+);
+
 }

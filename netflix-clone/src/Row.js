@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import "./Row.css";
 import YouTube from "react-youtube";
-import movieTrailer from "movie-trailer";
 
-const base_url = "https://image.tmdb.org/t/p/original/";
+
+const base_url= "https://image.tmdb.org/t/p/original"
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
@@ -20,25 +20,42 @@ function Row({ title, fetchUrl, isLargeRow }) {
   }, [fetchUrl]);
 
   const opts = {
-    height: "390",
+    height: "500",
     width: "100%",
     playerVars: {
       autoplay: 1,
     },
   };
 
-  const handleClick = (movie) => {
-    if (trailerUrl) {
-      setTrailerUrl("");
-    } else {
-      movieTrailer(movie?.name || movie?.title || movie?.original_name || "")
-        .then((url) => {
-          const urlParams = new URLSearchParams(new URL(url).search);
-          setTrailerUrl(urlParams.get("v"));
-        })
-        .catch((error) => console.log(error));
+const handleClick = async (movie) => {
+  if (trailerUrl) {
+    setTrailerUrl("");
+  } else {
+    try {
+      // Determine if it's a TV show or Movie to use the correct API path
+      const isTV = movie?.first_air_date ? "tv" : "movie";
+      
+      // Fetch video data from TMDB using the movie/show ID
+      const response = await axios.get(
+        `/${isTV}/${movie.id}/videos?api_key=be5b04737a20f676a9135c108e739aeb`
+      );
+
+      // Find a YouTube video that is a "Trailer"
+      const trailer = response.data.results.find(
+        (vid) => vid.site === "YouTube" && (vid.type === "Trailer" || vid.type === "Teaser")
+      );
+
+      if (trailer) {
+        setTrailerUrl(trailer.key); // The 'key' is the YouTube ID (e.g., 'ndlPuyH279Y')
+      } else {
+        alert("Official trailer not found on TMDB for this title.");
+      }
+    } catch (error) {
+      console.error("Error fetching trailer from TMDB:", error);
+      alert("Could not load trailer.");
     }
-  };
+  }
+};
 
   return (
     <div className="row">
@@ -54,7 +71,12 @@ function Row({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+
+      {trailerUrl && (
+        <div className="row__trailer">
+          <YouTube videoId={trailerUrl} opts={opts} />
+        </div>
+      )}
     </div>
   );
 }

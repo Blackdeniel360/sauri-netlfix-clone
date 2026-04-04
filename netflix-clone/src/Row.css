@@ -36,3 +36,51 @@
 .row__posterLarge:hover {
   transform: scale(1.10);
 }
+
+@media (max-width: 992px) {
+  .row__posterLarge {
+    max-height: 4100px;
+    width: 200px;
+  }
+  .row__poster{
+    max-height: 150px;
+   }
+}
+
+@media (max-width: 600px) {
+  .row {
+    margin-left: 10px;
+  }
+  .row__posters {
+    padding:10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .row__poster {
+  max-height:100px;
+  }
+  .row__posterLarge {
+    max-height: 250px;
+    width: 150px;
+  }
+  .row h2 {
+    font-size: 1.2rem;
+  }
+  .row__trailer {
+    padding: 10px;
+  }
+
+  }
+  
+
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;    
+  margin-top: 20px;
+  border: none;
+}
+
+.row__trailer {
+  padding: 40px;
+  background-color: black;
+}
