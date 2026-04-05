@@ -34,7 +34,7 @@
 }
 
 .nav__searchContainer {
-  margin-right: 20px;
+  margin-right: 47px;
   display: flex;
   align-items: center;
 }
@@ -42,7 +42,7 @@
 .nav__searchInput {
   background-color: rgba(0, 0, 0, 0.75);
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
   padding: 8px 15px;
   border-radius: 4px;
   outline: none;
