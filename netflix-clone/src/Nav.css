@@ -1,3 +1,4 @@
+/* --- Navigation Bar --- */
 .nav {
   position: fixed;
   top: 0;
@@ -7,8 +8,8 @@
   z-index: 100;
   display: flex;
   justify-content: space-between;
-  transition-timing-function: ease-in;
-  transition: all 0.5s;
+  align-items: center; /* Added for vertical centering */
+  transition: all 0.5s ease-in;
 }
 
 .nav__black {
@@ -16,38 +17,42 @@
   backdrop-filter: blur(10px);
 }
 
-@media (max-width: 600px) {
-  .nav {
-    padding: 10px;
-  }
-}
-
+/* --- Logo & Search --- */
 .nav__logo {
-  font-family: 'Bebas Neue', cursive;  
-  color: #E50914;                     
-  font-weight: 700;                    
-  font-size: 40px;                     
-  letter-spacing: -1px;                
+  font-family: 'Bebas Neue', cursive;
+  color: #E50914;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: -1px;
   cursor: pointer;
   margin: 0;
-  text-transform: uppercase;           
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.nav__logo:hover {
+  transform: scale(1.05);
 }
 
 .nav__searchContainer {
-  margin-right: 47px;
   display: flex;
   align-items: center;
+  flex: 1; /* Helps spacing */
+  justify-content: center;
 }
 
 .nav__searchInput {
   background-color: rgba(0, 0, 0, 0.75);
   color: white;
   border: 2px solid white;
-  padding: 8px 15px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 8px;
   outline: none;
   width: 200px;
   transition: width 0.3s ease;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .nav__searchInput:focus {
@@ -55,7 +60,58 @@
   background-color: black;
 }
 
+/* --- THE MISSING PROFILE STYLES --- */
+.nav__profileContainer {
+  position: relative;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.nav__avatar {
+  width: 45px; /* REQUIRED: Image won't show without this */
+  height: 45px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.nav__profileDropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid #444;
+  width: 150px;
+  padding: 10px 0;
+  z-index: 200;
+}
+
+.nav__profileContainer:hover .nav__profileDropdown {
+  display: block;
+}
+
+.nav__dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+}
+
+.nav__dropdownItem:hover {
+  background-color: #333;
+}
+
+.nav__dropdownAvatar {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
+  .nav {
+    padding: 10px;
+  }
   .nav__searchInput {
     width: 120px;
     font-size: 12px;
@@ -63,20 +119,9 @@
   .nav__searchInput:focus {
     width: 150px;
   }
+  .nav__logo {
+    font-size: 25px;
+    font-family: 'Bebas Neue', cursive;
 
-
-
-
-.nav__logo:hover {
-  transform: scale(1.05);
-  transition: transform 0.2s;
-}
-
-.nav__logo-img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  cursor: pointer;  
-
- }
+  }
 }

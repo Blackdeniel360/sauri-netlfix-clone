@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './Nav.css';
 
 
-function Nav({ onSearch}) {
+function Nav({ onSearch, activeProfile, setActiveProfile, profiles }) {
   const [show, handleShow] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -37,6 +37,25 @@ function Nav({ onSearch}) {
           value={searchTerm}
           onChange={handleSearchChange}
         />
+      </div>
+    <div className="nav__profileContainer">
+
+        <img
+          className="nav__avatar"
+          src={activeProfile.img}
+          alt="Profile icon"
+        />
+        
+        <div className="nav__profileDropdown">
+          <div className="nav__dropdownTriangle" />
+
+          {profiles.map((p) => (
+  <div key={p.id} className="nav__dropdownItem" onClick={() => setActiveProfile(p)}>
+    <img src={p.img} alt="" className="nav__dropdownAvatar" />
+    <p>{p.name}</p>
+  </div>
+))}
+        </div>
       </div>
     </div>
   );
